@@ -51,6 +51,10 @@
 		98AAD0CB28F06D1900893DCB /* Universal_community */ = {
 			isa = PBXGroup;
 			children = (
+				98AAD0DE28F06D5000893DCB /* Extensions */,
+				98AAD0DD28F06D4D00893DCB /* Model */,
+				98AAD0DB28F06D4300893DCB /* Service */,
+				98AAD0DA28F06D4200893DCB /* Core */,
 				98AAD0CC28F06D1900893DCB /* Universal_communityApp.swift */,
 				98AAD0CE28F06D1900893DCB /* ContentView.swift */,
 				98AAD0D028F06D1A00893DCB /* Assets.xcassets */,
@@ -65,6 +69,50 @@
 				98AAD0D328F06D1A00893DCB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		98AAD0DA28F06D4200893DCB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				98AAD0E028F06DE800893DCB /* Feed */,
+				98AAD0DF28F06DDA00893DCB /* Components */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		98AAD0DB28F06D4300893DCB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		98AAD0DD28F06D4D00893DCB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		98AAD0DE28F06D5000893DCB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		98AAD0DF28F06DDA00893DCB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		98AAD0E028F06DE800893DCB /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
