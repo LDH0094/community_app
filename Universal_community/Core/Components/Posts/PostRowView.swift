@@ -44,16 +44,11 @@ struct PostRowView: View {
                         .font(.subheadline)
                 }
                 
-                Spacer()
+                Text("30")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
                 
-                Button{
-                    //action goes here...
-                } label: {
-                    Image(systemName: "arrow.2.squarepath")
-                        .font(.subheadline)
-                }
-                
-                Spacer()
+                Spacer(minLength: 5)
                 
                 Button{
                     //action goes here...
@@ -62,16 +57,16 @@ struct PostRowView: View {
                         .font(.subheadline)
                 }
                 
+                Text("15 Likes")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+            
                 Spacer()
                 
-                Button{
-                    //action goes here...
-                } label: {
-                    Image(systemName: "bookmark")
-                        .font(.subheadline)
-                }
+
             }
             .padding()
+            Divider()
         }
         .padding()
     }
