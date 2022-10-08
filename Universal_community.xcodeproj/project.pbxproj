@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9854093428F1970E0019913E /* UserFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854093328F1970E0019913E /* UserFilterViewModel.swift */; };
 		98AAD0CD28F06D1900893DCB /* Universal_communityApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AAD0CC28F06D1900893DCB /* Universal_communityApp.swift */; };
 		98AAD0CF28F06D1900893DCB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AAD0CE28F06D1900893DCB /* ContentView.swift */; };
 		98AAD0D128F06D1A00893DCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98AAD0D028F06D1A00893DCB /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9854093328F1970E0019913E /* UserFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterViewModel.swift; sourceTree = "<group>"; };
 		98AAD0C928F06D1900893DCB /* Universal_community.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Universal_community.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98AAD0CC28F06D1900893DCB /* Universal_communityApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Universal_communityApp.swift; sourceTree = "<group>"; };
 		98AAD0CE28F06D1900893DCB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		98AE72BB28F14B84009D4D60 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9854093328F1970E0019913E /* UserFilterViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98AE72BE28F14B97009D4D60 /* ProfileView.swift in Sources */,
+				9854093428F1970E0019913E /* UserFilterViewModel.swift in Sources */,
 				98AAD0CF28F06D1900893DCB /* ContentView.swift in Sources */,
 				98AAD0E828F0732B00893DCB /* PostRowView.swift in Sources */,
 				98AE72B828F14ABB009D4D60 /* NotificationView.swift in Sources */,

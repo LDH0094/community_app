@@ -28,21 +28,13 @@ struct MainTabView: View {
                     Image(systemName: "magnifyingglass")
                 }.tag(1)
             
-            NotificationView()
+            ProfileView()
                 .onTapGesture {
                     self.selectedIndex = 2
                 }
                 .tabItem {
-                    Image(systemName: "bell")
-                }.tag(2)
-            
-            ProfileView()
-                .onTapGesture {
-                    self.selectedIndex = 3
-                }
-                .tabItem {
                     Image(systemName: "person.circle.fill")
-                }.tag(3)
+                }.tag(2)
         }
     }
 }
