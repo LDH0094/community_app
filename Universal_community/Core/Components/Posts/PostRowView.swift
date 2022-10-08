@@ -35,6 +35,7 @@ struct PostRowView: View {
                         
                 }
             }
+            
             //action buttons
             HStack{
                 Button{
@@ -66,7 +67,9 @@ struct PostRowView: View {
 
             }
             .padding()
+            .foregroundColor(.red)
             Divider()
+            
         }
         .padding()
     }
