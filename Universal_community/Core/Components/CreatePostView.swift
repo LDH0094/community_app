@@ -34,8 +34,10 @@ struct CreatePostView: View {
             }
             .padding()
             
-
-            TextArea("뭔가 적어주세요!", text: $caption)
+           
+            TextArea("뭔가 적어주세요!!", text: $caption)
+                .padding()
+  
             
         }
         
