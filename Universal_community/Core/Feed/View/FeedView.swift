@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeedView: View {
-
+    @State private var createPost = false
     
     var body: some View {
         NavigationView{
@@ -22,7 +22,10 @@ struct FeedView: View {
                     }
                 }
             
-                NavigationLink(destination: CreatePostView()){
+                Button{
+                    createPost.toggle()
+                }label:
+                {
                     Image(systemName: "square.and.pencil.circle.fill")
                         .resizable()
                         .renderingMode(.template)
@@ -30,7 +33,9 @@ struct FeedView: View {
                         .frame(width: 60, height: 60)
                         .padding()
                 }
-                .navigationTitle(Text(""))
+                .fullScreenCover(isPresented: $createPost){
+                    CreatePostView()
+                }
             }
         }
     }

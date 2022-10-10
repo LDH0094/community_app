@@ -11,7 +11,7 @@ import SwiftUI
 struct Universal_communityApp: App {
     var body: some Scene {
         WindowGroup {
-            FeedView()
+           MainTabView()
         }
     }
 }

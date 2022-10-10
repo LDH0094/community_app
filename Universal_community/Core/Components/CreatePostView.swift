@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct CreatePostView: View {
-    @State private var caption = "안녕하세요 샘플 글입니다"
+    @State private var caption = ""
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         VStack{
             HStack{
                 Button{
-                    
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("취소")
                     
@@ -32,8 +33,10 @@ struct CreatePostView: View {
                 }
             }
             .padding()
-            TextArea(text: $caption, "적고 싶은 내용을 적어봐요!")
-            Spacer()
+            
+
+            TextArea("뭔가 적어주세요!", text: $caption)
+            
         }
         
     }
