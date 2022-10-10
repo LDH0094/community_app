@@ -13,8 +13,8 @@ enum UserFilterViewModel: Int, CaseIterable{
     
     var title: String {
         switch self{
-        case .myPosts: return "MyPosts"
-        case .likedPosts: return "LikedPosts"
+        case .myPosts: return "My Posts"
+        case .likedPosts: return "Liked Posts"
         }
     }
 }
