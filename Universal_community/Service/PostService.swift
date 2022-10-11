@@ -9,18 +9,23 @@ import Foundation
 
 
 struct PostService {
-//    "localhost:8080/api/v1/board/\(lastIndex)"
+//localhost:8080/api/v1/posts/list/1?page=0&size=10
     static let shared = PostService()
     
     
-    func fetchPosts(lastIndex: Int, completion: @escaping (PostData) -> () ){
+    func fetchPosts(completion: @escaping (PostData) -> () ){
         
-        guard let url = URL(string: "localhost:8080/api/v1/board/\(lastIndex)") else {
+        guard let url = URL(string: "http://localhost:8080/api/v1/posts/list/1?page=0&size=10") else {
             return
         }
         
-        URLSession.shared.dataTask(with: url) {(data, _, _) in
+        var request: URLRequest = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) {(data, _, _) in
+            print(data!)
             let postData = try! JSONDecoder().decode(PostData.self, from: data!)
+            
             
             DispatchQueue.main.async {
                 completion(postData)

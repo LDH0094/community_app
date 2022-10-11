@@ -142,7 +142,8 @@ extension ProfileView {
         ScrollView{
             LazyVStack{
                 ForEach(0...9, id: \.self){_ in
-                    PostRowView()
+//                    PostRowView(post: Post)
+                    Text("jello")
                 }
             }
         }

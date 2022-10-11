@@ -15,8 +15,8 @@ class FeedViewModel: ObservableObject{
         getPosts()
     }
     
-    func getPosts(lastIndex: Int){
-        service.fetchPosts(lastIndex: lastIndex) { postData in
+    func getPosts(){
+        service.fetchPosts() { postData in
             
             //from general post data to posts [post]
             self.posts = postData.data
@@ -26,14 +26,6 @@ class FeedViewModel: ObservableObject{
     /*
      when post is initiall called.
      */
-    func getPosts(){
-        service.fetchPosts(lastIndex: 0) { postData in
-            
-            //from general post data to posts [post]
-            self.posts = postData.data
-        }
-    }
-    
     
 }
 
