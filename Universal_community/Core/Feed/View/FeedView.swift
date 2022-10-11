@@ -9,17 +9,19 @@ import SwiftUI
 
 struct FeedView: View {
     @State private var createPost = false
+    @ObservedObject var viewModel = FeedViewModel()
     
     var body: some View {
         NavigationView{
             ZStack (alignment: .bottomTrailing){
                 ScrollView {
                     LazyVStack{
-                        ForEach(0 ... 20, id: \.self){
-                            _ in PostRowView()
+                        ForEach(viewModel.posts, id: \.self){
+                            post in PostRowView(post: post)
                             
                         }
                     }
+                    
                 }
             
                 Button{
@@ -46,3 +48,5 @@ struct FeedView_Previews: PreviewProvider {
         FeedView()
     }
 }
+
+

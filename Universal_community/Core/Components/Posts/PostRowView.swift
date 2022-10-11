@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PostRowView: View {
+    let post: Post
     var body: some View {
         VStack (alignment: .leading){
             
@@ -29,7 +30,7 @@ struct PostRowView: View {
                             .foregroundColor(.gray)
                             .font(.caption)
                     }
-                    Text("I believe the best part of the life begins with believing the self.")
+                    Text(post.content)
                         .font(.subheadline)
                         .multilineTextAlignment(.leading)
                         
@@ -75,8 +76,8 @@ struct PostRowView: View {
     }
 }
 
-struct PostRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostRowView()
-    }
-}
+//struct PostRowView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PostRowView(post: Post(id: 12, title: "hi", content: "demo placeholder http", writer: "deok", likeCount: 20, commentCount: 20, date: "sdad-asdasd-120", liked: true))
+//    }
+//}
