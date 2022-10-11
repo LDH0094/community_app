@@ -10,6 +10,7 @@ import SwiftUI
 struct PostRowView: View {
     let post: Post
     var body: some View {
+
         VStack (alignment: .leading){
             
             HStack(alignment: .top, spacing: 12){
@@ -21,9 +22,9 @@ struct PostRowView: View {
                 VStack(alignment: .leading, spacing: 4){
                     //User info Nickname & user tag & date created;
                     HStack{
-                        Text("Deokhyun Lee")
+                        Text(post.writer)
                             .font(.subheadline).bold()
-                        Text("@Deok123")
+                        Text("@\(post.writer)")
                             .foregroundColor(.gray)
                             .font(.caption)
                         Text("2hrs")
@@ -46,7 +47,7 @@ struct PostRowView: View {
                         .font(.subheadline)
                 }
                 
-                Text("30")
+                Text(String(post.commentCount))
                     .font(.subheadline)
                     .foregroundColor(.gray)
                 
@@ -59,7 +60,7 @@ struct PostRowView: View {
                         .font(.subheadline)
                 }
                 
-                Text("15 Likes")
+                Text("\(post.likeCount) Likes")
                     .font(.subheadline)
                     .foregroundColor(.gray)
             
@@ -76,8 +77,8 @@ struct PostRowView: View {
     }
 }
 
-//struct PostRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PostRowView(post: Post(id: 12, title: "hi", content: "demo placeholder http", writer: "deok", likeCount: 20, commentCount: 20, date: "sdad-asdasd-120", liked: true))
-//    }
-//}
+struct PostRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        PostRowView(post: Post(id: 12, title: "hi", content: "demo placeholder http 1234 demo placeholder http 1234 demo placeholder http 1234 demo placeholder http 1234 demo placeholder http 1234 demo placeholder http 1234 demo placeholder http 1234  ", writer: "deok#0001", likeCount: 10, commentCount: 15, date: "sdad-asdasd-120", liked: true))
+    }
+}

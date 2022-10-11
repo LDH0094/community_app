@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @State private var selectedFilter: UserFilterViewModel = .myPosts
     @Namespace var animation
-    
+    @State var user: User
     var body: some View {
         VStack(alignment: .leading){
             userInfo
@@ -25,7 +25,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(user: User(googleId: "132", nickname: "deok#0001"))
     }
 }
 
@@ -73,8 +73,9 @@ extension ProfileView {
     var userInfo: some View {
         VStack(alignment: .leading, spacing: 8){
             HStack(alignment: .center){
-                Text("DeokHyun Lee")
+                Text(user.nickname)
                     .font(.title2).bold()
+                    .textCase(.uppercase)
                 Text("#2785")
                     .font(.subheadline)
                     .foregroundColor(.gray)
@@ -142,10 +143,10 @@ extension ProfileView {
         ScrollView{
             LazyVStack{
                 ForEach(0...9, id: \.self){_ in
-//                    PostRowView(post: Post)
-                    Text("jello")
+                    PostRowView(post: Post(id: 12, title: "hi", content: "demo placeholder http 1234 demo placeholder http 1234 demo", writer: "deok#0001", likeCount: 10, commentCount: 15, date: "sdad-asdasd-120", liked: true))
+                    }
                 }
             }
         }
     }
-}
+
