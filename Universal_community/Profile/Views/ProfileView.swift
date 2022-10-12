@@ -11,6 +11,8 @@ struct ProfileView: View {
     @State private var selectedFilter: UserFilterViewModel = .myPosts
     @Namespace var animation
     @State var user: User
+    @State var isLoggedIn: Bool = false
+    
     var body: some View {
         VStack(alignment: .leading){
             userInfo
@@ -57,14 +59,20 @@ extension ProfileView {
     var actionButtons: some View {
         HStack{
             Spacer()
-            Button{
+            Group{
+                if isLoggedIn{
+                    Button{
+                    } label: {
+                        Text("프로필 수정")
+                            .font(.subheadline).bold()
+                            .foregroundColor(.black)
+                            .frame(width: 120, height: 32)
+                            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 0.75))
+                    }
+                } else {
+                    LoginView()
+                }
                 
-            } label: {
-                Text("Edit Profile")
-                    .font(.subheadline).bold()
-                    .foregroundColor(.black)
-                    .frame(width: 120, height: 32)
-                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 0.75))
             }
         }
         .padding(.trailing)

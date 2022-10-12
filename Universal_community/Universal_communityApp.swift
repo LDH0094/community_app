@@ -13,14 +13,7 @@ struct Universal_communityApp: App {
     var body: some Scene {
         WindowGroup {
             MainTabView()
-                    .onOpenURL { url in
-                      GIDSignIn.sharedInstance.handle(url)
-                    }
-                    .onAppear {
-                        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
-                            // Check if `user` exists; otherwise, do something with `error`
-                        }
-                    }
-                }
+//            ProfileView(user: User(googleId: "132", nickname: "deok#0001"))
         }
     }
+}
