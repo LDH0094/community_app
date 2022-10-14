@@ -11,10 +11,10 @@ class FeedViewModel: ObservableObject{
     @Published var posts = [Post]()
     let service = PostService()
     
-    init(){
-        getPosts()
-    }
-    
+//    init(){
+//        getPosts()
+//    }
+//    
     func getPosts(){
         service.fetchPosts() { postData in
             

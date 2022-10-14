@@ -16,10 +16,10 @@ struct FeedView: View {
             ZStack (alignment: .bottomTrailing){
                 ScrollView {
                     LazyVStack{
-                        ForEach(viewModel.posts, id: \.self){
-                            post in PostRowView(post: post)
-                            
-                        }
+//                        ForEach(viewModel.posts, id: \.self){
+//                            post in PostRowView(post: post)
+//                            
+//                        }
                     }
                     
                 }

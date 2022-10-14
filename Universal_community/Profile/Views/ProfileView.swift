@@ -70,7 +70,7 @@ extension ProfileView {
                             .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 0.75))
                     }
                 } else {
-                    LoginView()
+                    KakaoLoginView()
                 }
                 
             }

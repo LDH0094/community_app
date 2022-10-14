@@ -6,14 +6,27 @@
 //
 
 import SwiftUI
-import GoogleSignIn
+import KakaoSDKCommon
+import KakaoSDKAuth
 
 @main
 struct Universal_communityApp: App {
+    
+    init() {
+        // Kakao SDK 초기화
+        KakaoSDK.initSDK(appKey: "4517fbf3b2c336f9f4647ed53d7a9029")
+        print("hi!")
+    }
+    
     var body: some Scene {
         WindowGroup {
-            MainTabView()
-//            ProfileView(user: User(googleId: "132", nickname: "deok#0001"))
+            MainTabView().onOpenURL(perform: { url in
+                if (AuthApi.isKakaoTalkLoginUrl(url)){
+                    AuthController.handleOpenUrl(url: url)
+                    print("at least in")
+                }
+                print("no kakao")
+            })
         }
     }
 }
