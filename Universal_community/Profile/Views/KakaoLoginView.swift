@@ -11,6 +11,7 @@ struct KakaoLoginView: View {
     private var kakao = KakaoApi()
     var body: some View {
         Button{
+//            kakao.deleteAccount()
             kakao.kakaoWebLogin()
 //            kakao.kakaoLogOut()
         } label: {
