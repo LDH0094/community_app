@@ -12,6 +12,7 @@ struct EditUserInfoView: View {
     @State private var isSecured: Bool = true
     @State private var userName: String = ""
     @State private var overlayColorUser = Color.clear
+    
     var body: some View {
         Button{
             isShowingSheet.toggle()
@@ -55,6 +56,7 @@ extension EditUserInfoView {
             
             HStack{
                 Button("취소", action: { isShowingSheet.toggle()})
+                
                 Spacer()
                 
                 Button{
@@ -68,7 +70,13 @@ extension EditUserInfoView {
                         .background(Capsule().foregroundColor(.orange))
                 }
             }
+            .padding()
+            
+            
+            
         }
+        .padding(.vertical, 40)
+        .padding(.horizontal, 12)
     }
 }
 

@@ -12,6 +12,7 @@ import KakaoSDKUser
 
 class KakaoApi{
     var isLoggedIn: Bool = false
+    var isLoggedOut: Bool = false
     
     func kakaoLogIn(){
         if (UserApi.isKakaoTalkLoginAvailable()) {
@@ -44,12 +45,14 @@ class KakaoApi{
     }
     
     func kakaoLogOut(){
-        UserApi.shared.logout {(error) in
+        UserApi.shared.logout { [self](error) in
             if let error = error {
                 print(error)
+                self.isLoggedOut = false
             }
             else {
                 print("logout() success.")
+                self.isLoggedOut = true
             }
         }
     }

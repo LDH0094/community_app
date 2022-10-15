@@ -21,15 +21,13 @@ struct Universal_communityApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            MainTabView().onOpenURL(perform: { url in
-//                if (AuthApi.isKakaoTalkLoginUrl(url)){
-//                    AuthController.handleOpenUrl(url: url)
-//                    print("at least in")
-//                }
-//                print("no kakao")
-//            })
+            MainTabView().onOpenURL(perform: { url in
+                if (AuthApi.isKakaoTalkLoginUrl(url)){
+                    AuthController.handleOpenUrl(url: url)
+                }
+            })
             
-            KakaoLoginView()
+//            KakaoLoginView()
         }
     }
 }
