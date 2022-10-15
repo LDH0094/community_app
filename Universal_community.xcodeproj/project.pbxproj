@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9843EE0A28F5BF330094DDBF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843EE0928F5BF330094DDBF /* User.swift */; };
-		9843EE0E28F5C1210094DDBF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843EE0D28F5C1210094DDBF /* LoginView.swift */; };
 		9854093428F1970E0019913E /* UserFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854093328F1970E0019913E /* UserFilterViewModel.swift */; };
+		98823B9C28FA9CB600848545 /* EditUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98823B9B28FA9CB600848545 /* EditUserInfoView.swift */; };
 		9883CACC28F9BECE00EADA13 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 9883CACB28F9BECE00EADA13 /* KakaoSDK */; };
 		9883CACE28F9C26700EADA13 /* KakaoLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883CACD28F9C26700EADA13 /* KakaoLoginView.swift */; };
 		9883CAD028F9C32100EADA13 /* KakaoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883CACF28F9C32100EADA13 /* KakaoApi.swift */; };
@@ -32,8 +32,8 @@
 
 /* Begin PBXFileReference section */
 		9843EE0928F5BF330094DDBF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		9843EE0D28F5C1210094DDBF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9854093328F1970E0019913E /* UserFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterViewModel.swift; sourceTree = "<group>"; };
+		98823B9B28FA9CB600848545 /* EditUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfoView.swift; sourceTree = "<group>"; };
 		9883CACD28F9C26700EADA13 /* KakaoLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginView.swift; sourceTree = "<group>"; };
 		9883CACF28F9C32100EADA13 /* KakaoApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoApi.swift; sourceTree = "<group>"; };
 		9886B71828F56643009EE714 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
@@ -239,8 +239,8 @@
 			isa = PBXGroup;
 			children = (
 				98AE72BD28F14B97009D4D60 /* ProfileView.swift */,
-				9843EE0D28F5C1210094DDBF /* LoginView.swift */,
 				9883CACD28F9C26700EADA13 /* KakaoLoginView.swift */,
+				98823B9B28FA9CB600848545 /* EditUserInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -334,10 +334,10 @@
 				9843EE0A28F5BF330094DDBF /* User.swift in Sources */,
 				98AE72B828F14ABB009D4D60 /* NotificationView.swift in Sources */,
 				98AAD0E428F070E400893DCB /* FeedView.swift in Sources */,
+				98823B9C28FA9CB600848545 /* EditUserInfoView.swift in Sources */,
 				98AAD0CD28F06D1900893DCB /* Universal_communityApp.swift in Sources */,
 				98BF8F5228F4883600D24EFD /* PostService.swift in Sources */,
 				98AE72B628F14A99009D4D60 /* ExploreView.swift in Sources */,
-				9843EE0E28F5C1210094DDBF /* LoginView.swift in Sources */,
 				9883CAD028F9C32100EADA13 /* KakaoApi.swift in Sources */,
 				98AE72B128F146B3009D4D60 /* MainTabView.swift in Sources */,
 			);

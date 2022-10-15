@@ -11,9 +11,9 @@ import KakaoSDKAuth
 import KakaoSDKUser
 
 class KakaoApi{
+    var isLoggedIn: Bool = false
     
-    
-    func kakaoLogin(){
+    func kakaoLogIn(){
         if (UserApi.isKakaoTalkLoginAvailable()) {
             UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
                 if let error = error {
@@ -29,14 +29,14 @@ class KakaoApi{
         }
     }
     
-    func kakaoWebLogin(){
+    func kakaoWebLogIn(){
         UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
                 if let error = error {
                     print(error)
                 }
                 else {
                     print("loginWithKakaoAccount() success.")
-
+                    self.isLoggedIn = true
                     //do something
                     _ = oauthToken
                 }
@@ -64,4 +64,36 @@ class KakaoApi{
             }
         }
     }
+    
+    func kakaoUserInfo(){
+        UserApi.shared.me() {(user, error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("me() success.")
+                
+                //do something
+                _ = user
+            }
+        }
+    }
+    
+    
+    func checkLogIn(){
+        // 사용자 액세스 토큰 정보 조회
+        UserApi.shared.accessTokenInfo {(accessTokenInfo, error)  in
+            if let error = error{
+                print(error)
+                self.isLoggedIn = false
+            }
+            else {
+                print("accessTokenInfo() success.")
+                //do something
+                _ = accessTokenInfo
+                self.isLoggedIn = true
+            }
+        }
+    }
+
 }

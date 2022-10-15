@@ -6,23 +6,40 @@
 //
 
 import SwiftUI
+import KakaoSDKUser
 
 struct KakaoLoginView: View {
-    private var kakao = KakaoApi()
-    var body: some View {
-        Button{
-//            kakao.deleteAccount()
-            kakao.kakaoWebLogin()
-//            kakao.kakaoLogOut()
-        } label: {
-            Image("kakao_login_medium_narrow")
-        }
-    }
+    private var service: KakaoApi
+    @State var loginStat: Bool
     
-}
-
-struct KakaoLoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        KakaoLoginView()
+    init() {
+        service = KakaoApi()
+        loginStat = service.isLoggedIn
+        print("init call")
+    }
+   
+    var body: some View {
+        Group{
+            if (loginStat){
+                EditUserInfoView()
+            } else {
+                Button{
+                    service.kakaoWebLogIn()
+                    if (service.isLoggedIn){
+                        loginStat.toggle()
+                    } else {
+                        loginStat = false
+                    }
+                } label: {
+                    Image("kakao_login_medium_narrow")
+                }
+            }
+        }
+        
+    }
+    struct KakaoLoginView_Previews: PreviewProvider {
+        static var previews: some View {
+            KakaoLoginView()
+        }
     }
 }

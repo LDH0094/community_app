@@ -9,7 +9,7 @@ import Foundation
 
 class FeedViewModel: ObservableObject{
     @Published var posts = [Post]()
-    let service = PostService()
+    let service = PostService.shared
     
 //    init(){
 //        getPosts()
