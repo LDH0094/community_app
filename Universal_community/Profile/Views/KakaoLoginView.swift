@@ -18,44 +18,48 @@ struct KakaoLoginView: View {
     }
    
     var body: some View {
-        Button("logout"){
-            service.kakaoWebLogIn()
-        }
-//        Group{
-//            if (loginStat){
-//                HStack{
-//                    EditUserInfoView()
-//                    Button{
-//                        service.kakaoLogOut()
-//                        if (service.isLoggedOut){
-//                            loginStat.toggle()
-//                        } else {
-//                            //loggin out failed, keep logged in
-//                            loginStat = true
-//                        }
-//                    } label: {
-//                        Text("로그아웃")
-//                            .font(.subheadline)
-//                            .foregroundColor(.red)
-//                    }
-//                }
-//            } else {
-//                Button{
-//                    service.kakaoWebLogIn()
-//                    if (service.isLoggedIn){
-//                        loginStat.toggle()
-//
-//                    } else {
-//
-//                        //signing failed, keep login button appear
-//                        loginStat = false
-//                        print("KakaoLoginView: Login failed")
-//                    }
-//                } label: {
-//                    Image("kakao_login_medium_narrow")
-//                }
-//            }
+//        Button("logout"){
+//            service.kakaoWebLogIn()
 //        }
+        Group{
+            if (loginStat){
+                HStack{
+                    EditUserInfoView()
+                    Button{
+                        service.kakaoLogOut()
+                        if (service.isLoggedOut){
+                            loginStat.toggle()
+                        } else {
+                            //loggin out failed, keep logged in
+                            loginStat = true
+                        }
+                    } label: {
+                        Text("로그아웃")
+                            .font(.subheadline)
+                            .foregroundColor(.red)
+                    }
+                }
+            } else {
+                Button{
+                    service.kakaoWebLogIn()
+                    if (service.isLoggedIn){
+                        //if signin was success full, then do http call
+
+
+
+                        loginStat.toggle()
+
+                    } else {
+
+                        //signing failed, keep login button appear
+                        loginStat = false
+                        print("KakaoLoginView: Login failed")
+                    }
+                } label: {
+                    Image("kakao_login_medium_narrow")
+                }
+            }
+        }
         
     }
     struct KakaoLoginView_Previews: PreviewProvider {

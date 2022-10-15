@@ -12,6 +12,7 @@ struct EditUserInfoView: View {
     @State private var isSecured: Bool = true
     @State private var userName: String = ""
     @State private var overlayColorUser = Color.clear
+    private var service = UserService.shared
     
     var body: some View {
         Button{
@@ -60,7 +61,11 @@ extension EditUserInfoView {
                 Spacer()
                 
                 Button{
-                    
+                    service.signInUser(authId: "113", nickname: userName){
+                        (a, error) in
+//                        print(a!)
+//                        print(error!)
+                    }
                 } label: {
                     Text("확인")
                         .bold()

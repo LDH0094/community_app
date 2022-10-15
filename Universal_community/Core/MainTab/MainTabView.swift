@@ -28,7 +28,7 @@ struct MainTabView: View {
                     Image(systemName: "magnifyingglass")
                 }.tag(1)
             
-            ProfileView(user: User(googleId: "132", nickname: "deok#0002"))
+            ProfileView(user: User(authId: "132", nickname: "deok#0002"))
                 .onTapGesture {
                     self.selectedIndex = 2
                 }

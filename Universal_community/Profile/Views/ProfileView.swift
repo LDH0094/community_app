@@ -27,7 +27,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(user: User(googleId: "132", nickname: "deok#0001"))
+        ProfileView(user: User(authId: "132", nickname: "deok#0001"))
     }
 }
 

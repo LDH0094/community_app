@@ -28,6 +28,7 @@
 		98BF8F4E28F46FC200D24EFD /* TextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BF8F4D28F46FC200D24EFD /* TextArea.swift */; };
 		98BF8F5028F4875700D24EFD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BF8F4F28F4875700D24EFD /* Post.swift */; };
 		98BF8F5228F4883600D24EFD /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BF8F5128F4883600D24EFD /* PostService.swift */; };
+		98CCD0A328FAF4520055E426 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CCD0A228FAF4520055E426 /* UserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		98BF8F4D28F46FC200D24EFD /* TextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextArea.swift; sourceTree = "<group>"; };
 		98BF8F4F28F4875700D24EFD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		98BF8F5128F4883600D24EFD /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		98CCD0A228FAF4520055E426 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				98BF8F5128F4883600D24EFD /* PostService.swift */,
+				98CCD0A228FAF4520055E426 /* UserService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				98AE72B828F14ABB009D4D60 /* NotificationView.swift in Sources */,
 				98AAD0E428F070E400893DCB /* FeedView.swift in Sources */,
 				98823B9C28FA9CB600848545 /* EditUserInfoView.swift in Sources */,
+				98CCD0A328FAF4520055E426 /* UserService.swift in Sources */,
 				98AAD0CD28F06D1900893DCB /* Universal_communityApp.swift in Sources */,
 				98BF8F5228F4883600D24EFD /* PostService.swift in Sources */,
 				98AE72B628F14A99009D4D60 /* ExploreView.swift in Sources */,

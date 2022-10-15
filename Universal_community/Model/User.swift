@@ -9,6 +9,6 @@ import Foundation
 
 
 struct User{
-    let googleId: String
+    let authId: String
     let nickname: String
 }
