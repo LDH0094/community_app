@@ -10,6 +10,8 @@ import SwiftUI
 struct FeedView: View {
     @State private var createPost = false
     @ObservedObject var viewModel = FeedViewModel()
+    @ObservedObject var userViewModel = UserInfoViewModel()
+
     
     var body: some View {
         NavigationView{
@@ -23,9 +25,12 @@ struct FeedView: View {
                     }
                     
                 }
-            
                 Button{
-                    createPost.toggle()
+                    if (!userViewModel.user.authId.isEmpty){
+                        createPost.toggle()
+                    } else {
+                        print("Need to Login to Post")
+                    }
                 }label:
                 {
                     Image(systemName: "square.and.pencil.circle.fill")
@@ -36,7 +41,8 @@ struct FeedView: View {
                         .padding()
                 }
                 .fullScreenCover(isPresented: $createPost){
-                    CreatePostView()
+                    CreatePostView(authId: userViewModel.user.authId)
+                        
                 }
             }
         }

@@ -10,92 +10,48 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
 
-class KakaoApi{
-    var isLoggedIn: Bool = false
-    var isLoggedOut: Bool = false
+final public class KakaoApi{
+    public static let shared = KakaoApi()
     
-    func kakaoLogIn(){
-        if (UserApi.isKakaoTalkLoginAvailable()) {
-            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+    
+    public func webLogIn() {
+         UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
                 if let error = error {
                     print(error)
-                }
-                else {
-                    print("loginWithKakaoTalk() success.")
-
-                    //do something
-                    _ = oauthToken
-                }
-            }
-        }
-    }
-    
-    func kakaoWebLogIn(){
-        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-                if let error = error {
-                    print(error)
+                    UserDefaults.standard.set(false, forKey: "hasLoggedIn")
                 }
                 else {
                     print("loginWithKakaoAccount() success.")
-                    self.isLoggedIn = true
                     //do something
+                    UserDefaults.standard.set(true, forKey: "hasLoggedIn")
                     _ = oauthToken
                 }
             }
     }
     
-    func kakaoLogOut(){
-        UserApi.shared.logout { [self](error) in
-            if let error = error {
-                print(error)
-                self.isLoggedOut = false
-            }
-            else {
-                print("logout() success.")
-                self.isLoggedOut = true
-            }
-        }
-    }
-    
-    func deleteAccount(){
-        UserApi.shared.unlink {(error) in
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("unlink() success.")
+    public func checkLogIn() async {
+        if (AuthApi.hasToken()){
+            UserApi.shared.accessTokenInfo { (_, error) in
+                if let error = error {
+                    if let sdkError = error as? SdkError, sdkError.isInvalidTokenError() == true  {
+                        //로그인 필요
+                        
+                        
+                    }
+                    else {
+                        //기타 에러
+                        
+                    }
+                }
+                else {
+                    //토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
+                    
+                }
             }
         }
-    }
-    
-    func kakaoUserInfo(){
-        UserApi.shared.me() {(user, error) in
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("me() success.")
-                
-                //do something
-                _ = user
-            }
-        }
-    }
-    
-    
-    func checkLogIn(){
-        // 사용자 액세스 토큰 정보 조회
-        UserApi.shared.accessTokenInfo {(accessTokenInfo, error)  in
-            if let error = error{
-                print(error)
-                self.isLoggedIn = false
-            }
-            else {
-                print("accessTokenInfo() success.")
-                //do something
-                _ = accessTokenInfo
-                self.isLoggedIn = true
-            }
+        else {
+            //로그인 필요
+            
         }
     }
 

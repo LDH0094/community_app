@@ -8,28 +8,27 @@
 import SwiftUI
 import KakaoSDKCommon
 import KakaoSDKAuth
+import KakaoSDKUser
 
 @main
 struct Universal_communityApp: App {
+
     
     init() {
         // Kakao SDK 초기화
         KakaoSDK.initSDK(appKey: "4517fbf3b2c336f9f4647ed53d7a9029")
-        KakaoApi().checkLogIn()
+
+        
         print("hi!")
     }
     
     var body: some Scene {
         WindowGroup {
-//            MainTabView().onOpenURL(perform: { url in
-//                if (AuthApi.isKakaoTalkLoginUrl(url)){
-//                    AuthController.handleOpenUrl(url: url)
-//                }
-//            })
-            
-            EditUserInfoView()
-            
-//            KakaoLoginView()
+            MainTabView().onOpenURL(perform: { url in
+                if (AuthApi.isKakaoTalkLoginUrl(url)){
+                    AuthController.handleOpenUrl(url: url)
+                }
+            })
         }
     }
 }

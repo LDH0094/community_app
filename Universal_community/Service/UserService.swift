@@ -8,9 +8,9 @@
 import Foundation
 
 
-class UserService{
+final public class UserService{
     
-    static let shared = UserService()
+    public static let shared = UserService()
     
     //"http://localhost:8080/api/v1/member/1h2g2yysh297h2s"
     

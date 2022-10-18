@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9815F2CA28FED433002C1A38 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9815F2C928FED433002C1A38 /* UserInfoViewModel.swift */; };
 		9843EE0A28F5BF330094DDBF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843EE0928F5BF330094DDBF /* User.swift */; };
 		9854093428F1970E0019913E /* UserFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854093328F1970E0019913E /* UserFilterViewModel.swift */; };
-		98823B9C28FA9CB600848545 /* EditUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98823B9B28FA9CB600848545 /* EditUserInfoView.swift */; };
 		9883CACC28F9BECE00EADA13 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 9883CACB28F9BECE00EADA13 /* KakaoSDK */; };
-		9883CACE28F9C26700EADA13 /* KakaoLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883CACD28F9C26700EADA13 /* KakaoLoginView.swift */; };
 		9883CAD028F9C32100EADA13 /* KakaoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883CACF28F9C32100EADA13 /* KakaoApi.swift */; };
 		9886B71928F56643009EE714 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9886B71828F56643009EE714 /* FeedViewModel.swift */; };
 		98AAD0CD28F06D1900893DCB /* Universal_communityApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AAD0CC28F06D1900893DCB /* Universal_communityApp.swift */; };
@@ -32,10 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9815F2C928FED433002C1A38 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		9843EE0928F5BF330094DDBF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9854093328F1970E0019913E /* UserFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterViewModel.swift; sourceTree = "<group>"; };
-		98823B9B28FA9CB600848545 /* EditUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfoView.swift; sourceTree = "<group>"; };
-		9883CACD28F9C26700EADA13 /* KakaoLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginView.swift; sourceTree = "<group>"; };
 		9883CACF28F9C32100EADA13 /* KakaoApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoApi.swift; sourceTree = "<group>"; };
 		9886B71828F56643009EE714 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		98AAD0C928F06D1900893DCB /* Universal_community.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Universal_community.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +66,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9815F2CB28FEE8F9002C1A38 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		9843EE0F28F5C4690094DDBF /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,8 +162,8 @@
 		98AAD0DF28F06DDA00893DCB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				9815F2CB28FEE8F9002C1A38 /* ViewModel */,
 				98AAD0E628F0731600893DCB /* Posts */,
-				98BF8F4928F4652700D24EFD /* CreatePostView.swift */,
 				98BF8F4D28F46FC200D24EFD /* TextArea.swift */,
 			);
 			path = Components;
@@ -192,6 +197,7 @@
 		98AAD0E628F0731600893DCB /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				98BF8F4928F4652700D24EFD /* CreatePostView.swift */,
 				98AAD0E728F0732B00893DCB /* PostRowView.swift */,
 			);
 			path = Posts;
@@ -234,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				9854093328F1970E0019913E /* UserFilterViewModel.swift */,
+				9815F2C928FED433002C1A38 /* UserInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -242,8 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				98AE72BD28F14B97009D4D60 /* ProfileView.swift */,
-				9883CACD28F9C26700EADA13 /* KakaoLoginView.swift */,
-				98823B9B28FA9CB600848545 /* EditUserInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,7 +332,6 @@
 			files = (
 				9886B71928F56643009EE714 /* FeedViewModel.swift in Sources */,
 				98BF8F4A28F4652700D24EFD /* CreatePostView.swift in Sources */,
-				9883CACE28F9C26700EADA13 /* KakaoLoginView.swift in Sources */,
 				98AE72BE28F14B97009D4D60 /* ProfileView.swift in Sources */,
 				98BF8F4E28F46FC200D24EFD /* TextArea.swift in Sources */,
 				98BF8F5028F4875700D24EFD /* Post.swift in Sources */,
@@ -337,7 +341,7 @@
 				9843EE0A28F5BF330094DDBF /* User.swift in Sources */,
 				98AE72B828F14ABB009D4D60 /* NotificationView.swift in Sources */,
 				98AAD0E428F070E400893DCB /* FeedView.swift in Sources */,
-				98823B9C28FA9CB600848545 /* EditUserInfoView.swift in Sources */,
+				9815F2CA28FED433002C1A38 /* UserInfoViewModel.swift in Sources */,
 				98CCD0A328FAF4520055E426 /* UserService.swift in Sources */,
 				98AAD0CD28F06D1900893DCB /* Universal_communityApp.swift in Sources */,
 				98BF8F5228F4883600D24EFD /* PostService.swift in Sources */,

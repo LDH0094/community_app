@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MainTabView: View {
     @State private var selectedIndex = 0
-    
     var body: some View {
+        
         TabView(selection: $selectedIndex){
             FeedView()
                 .onTapGesture {
@@ -28,7 +28,7 @@ struct MainTabView: View {
                     Image(systemName: "magnifyingglass")
                 }.tag(1)
             
-            ProfileView(user: User(authId: "132", nickname: "deok#0002"))
+            ProfileView()
                 .onTapGesture {
                     self.selectedIndex = 2
                 }
@@ -38,6 +38,7 @@ struct MainTabView: View {
         }
     }
 }
+
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {

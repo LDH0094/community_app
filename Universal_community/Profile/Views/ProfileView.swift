@@ -6,16 +6,19 @@
 //
 
 import SwiftUI
+import KakaoSDKUser
 
 struct ProfileView: View {
+    @ObservedObject var userViewModel = UserInfoViewModel()
     @State private var selectedFilter: UserFilterViewModel = .myPosts
     @Namespace var animation
-    @State var user: User
-    @State var isLoggedIn: Bool = false
+    
+    
+    
     
     var body: some View {
         VStack(alignment: .leading){
-            userInfo
+            userWidget
             profileFilterBar
             
             postView
@@ -27,66 +30,37 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(user: User(authId: "132", nickname: "deok#0001"))
+        ProfileView()
     }
 }
 
 extension ProfileView {
-    var headerView: some View {
-        ZStack(alignment: .bottomLeading){
-            Color(.systemBlue)
-                .ignoresSafeArea()
-            
-            VStack {
-                Button{
-                    
-                } label: {
-                    Image(systemName: "arrow.left")
-                        .resizable()
-                        .frame(width: 20, height: 16)
-                        .foregroundColor(.white)
-                        .offset(x: 16, y: 12)
-                }
-                
-                Circle()
-                    .frame(width: 72, height: 72)
-                .offset(x: 16 , y: 24)
-            }
-        }
-        .frame(height: 96)
-    }
     
     var actionButtons: some View {
-        HStack{
-            Spacer()
-            Group{
-                if isLoggedIn{
-                    Button{
-                    } label: {
-                        Text("프로필 수정")
-                            .font(.subheadline).bold()
-                            .foregroundColor(.black)
-                            .frame(width: 120, height: 32)
-                            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 0.75))
-                    }
-                } else {
-                    KakaoLoginView()
-                }
-                
+        Button{
+            if (!userViewModel.hasLoggedIn){
+                userViewModel.logIn()
+            } else{
+                userViewModel.logOut()
             }
+        } label: {
+            userViewModel.hasLoggedIn ?
+            Image(systemName: "square.and.pencil")
+            :
+            Image("kakao_login_medium_narrow")
         }
-        .padding(.trailing)
     }
     
-    var userInfo: some View {
+    var userWidget: some View {
         VStack(alignment: .leading, spacing: 8){
             HStack(alignment: .center){
-                Text(user.nickname)
+                Text(userViewModel.user.nickname)
                     .font(.title2).bold()
                     .textCase(.uppercase)
                 Text("#2785")
                     .font(.subheadline)
                     .foregroundColor(.gray)
+                Spacer()
                 actionButtons
             }
             Text("My description goes heresdsdsdsd")
