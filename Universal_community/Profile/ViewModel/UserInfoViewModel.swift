@@ -40,7 +40,8 @@ class UserInfoViewModel: ObservableObject{
                 UserService.shared.signInUser(authId: self.user.authId, nickname: self.user.nickname){
                     (data,error) in
                     _ = data
-                    
+                   print(data)
+                   
                 }
                 self.hasLoggedIn = true
             }

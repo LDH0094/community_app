@@ -12,14 +12,14 @@ final public class UserService{
     
     public static let shared = UserService()
     
-    //"http://localhost:8080/api/v1/member/1h2g2yysh297h2s"
+    //"http://localhost:8080/api/v1/member/kakao/1h2g2yysh297h2s"
     
     func signInUser(authId: String, nickname: String, completion: @escaping ([String: Any]?, Error?) -> Void){
         
         //declare parameter as a dictionary which contains string as key and value combination.
-        let parameters = ["googleId": authId, "nickname": nickname]
+        let parameters = ["authId": authId, "nickname": nickname]
         
-        guard let url = URL(string: "http://localhost:8080/api/v1/member/1h2g2yysh297h2s") else {
+        guard let url = URL(string: "http://localhost:8080/api/v1/member/kakao/1h2g2yysh297h2s") else {
             return
         }
         
@@ -39,7 +39,6 @@ final public class UserService{
         
         //create dataTask using the session object to send data to the server
            let task = session.dataTask(with: request, completionHandler: { data, response, error in
-
                guard error == nil else {
                    completion(nil, error)
                    return
@@ -52,11 +51,12 @@ final public class UserService{
 
                do {
                    //create json object from data
-                   guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
+                   guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
                        completion(nil, NSError(domain: "invalidJSONTypeError", code: -100009, userInfo: nil))
                        return
                    }
-                   print(json)
+                   var arrayJson = json["data"] as! Dictionary<String, Any>
+                   print(arrayJson["id"]!)
                    completion(json, nil)
                } catch let error {
                    print(error.localizedDescription)

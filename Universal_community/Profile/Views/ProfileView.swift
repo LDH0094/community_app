@@ -57,7 +57,7 @@ extension ProfileView {
                 Text(userViewModel.user.nickname)
                     .font(.title2).bold()
                     .textCase(.uppercase)
-                Text("#2785")
+                Text(userViewModel.user.authId)
                     .font(.subheadline)
                     .foregroundColor(.gray)
                 Spacer()

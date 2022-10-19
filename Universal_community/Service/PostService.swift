@@ -73,6 +73,7 @@ final public class PostService {
                }
 
                do {
+                   print("serial: \(data)")
                    //create json object from data
                    guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
                        completion(nil, NSError(domain: "invalidJSONTypeError", code: -100009, userInfo: nil))
