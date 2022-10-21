@@ -23,10 +23,13 @@ final public class PostService {
         request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request) {(data, _, _) in
-            print(data!)
-            let postData = try! JSONDecoder().decode(PostData.self, from: data!)
             
-            
+            guard let data = data else {
+                return
+            }
+            guard let postData = try? JSONDecoder().decode(PostData.self, from: data) else{
+                return
+            }
             DispatchQueue.main.async {
                 completion(postData)
             }
@@ -36,10 +39,10 @@ final public class PostService {
     
     //"http://localhost:8080/api/v1/posts/"
     
-    func createPost(title: String, content: String, authId: String, completion: @escaping ([String: Any]?, Error?) -> Void){
+    func createPost(title: String, content: String, memberId: Int64, completion: @escaping ([String: Any]?, Error?) -> Void){
         
         //declare parameter as a dictionary which contains string as key and value combination.
-        let parameters = ["title": title, "content": content, "memberId": authId]
+        let parameters = ["title": title, "content": content, "memberId": memberId] as [String : Any]
         
         guard let url = URL(string: "http://localhost:8080/api/v1/posts/") else {
             return

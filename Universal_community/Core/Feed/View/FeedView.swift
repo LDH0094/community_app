@@ -11,48 +11,57 @@ struct FeedView: View {
     @State private var createPost = false
     @ObservedObject var viewModel = FeedViewModel()
     @ObservedObject var userViewModel = UserInfoViewModel()
-
+    
+    init(){
+        viewModel.getPosts()
+    }
     
     var body: some View {
         NavigationView{
             ZStack (alignment: .bottomTrailing){
-                ScrollView {
-                    LazyVStack{
-//                        ForEach(viewModel.posts, id: \.self){
-//                            post in PostRowView(post: post)
-//                            
-//                        }
+                Group{
+                    if (viewModel.hasPosts){
+                        ScrollView {
+                            LazyVStack{
+                                ForEach(viewModel.posts, id: \.self){
+                                    post in
+                                    PostRowView(post: post)
+                                    
+                                }
+                            }
+                        }
+                    } else{
+                        Text("보여드릴 게시글이 없어요!")
                     }
-                    
-                }
-                Button{
-                    if (!userViewModel.user.authId.isEmpty){
-                        createPost.toggle()
-                    } else {
-                        print("Need to Login to Post")
+                    Button{
+                        if (userViewModel.user.memberId != 0){
+                            createPost.toggle()
+                        } else {
+                            print("Need to Login to Post")
+                        }
+                    }label:
+                    {
+                        Image(systemName: "square.and.pencil.circle.fill")
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(.orange)
+                            .frame(width: 60, height: 60)
+                            .padding()
                     }
-                }label:
-                {
-                    Image(systemName: "square.and.pencil.circle.fill")
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundColor(.orange)
-                        .frame(width: 60, height: 60)
-                        .padding()
-                }
-                .fullScreenCover(isPresented: $createPost){
-                    CreatePostView(authId: userViewModel.user.authId)
+                    .fullScreenCover(isPresented: $createPost){
+                        CreatePostView(memberId: userViewModel.user.memberId)
                         
+                    }
                 }
             }
         }
     }
-}
-
-struct FeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedView()
+    
+    struct FeedView_Previews: PreviewProvider {
+        static var previews: some View {
+            FeedView()
+        }
     }
+    
+    
 }
-
-

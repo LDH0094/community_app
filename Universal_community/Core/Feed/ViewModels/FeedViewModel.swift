@@ -9,17 +9,19 @@ import Foundation
 
 class FeedViewModel: ObservableObject{
     @Published var posts = [Post]()
+    @Published var hasPosts: Bool = false
     let service = PostService.shared
     
-//    init(){
-//        getPosts()
-//    }
-//    
+    
     func getPosts(){
         service.fetchPosts() { postData in
-            
-            //from general post data to posts [post]
-            self.posts = postData.data
+            if (postData.data.isEmpty){
+                self.hasPosts = false
+            }else{
+                self.hasPosts = true
+                //from general post data to posts [post]
+                self.posts = postData.data
+            }
         }
     }
     

@@ -10,7 +10,8 @@ import SwiftUI
 struct CreatePostView: View {
     @State private var title = ""
     @State private var content = ""
-    var authId: String
+    @State private var isLoading = true
+    var memberId: Int64
     
     
     @Environment(\.presentationMode) var presentationMode
@@ -26,11 +27,12 @@ struct CreatePostView: View {
                 Spacer()
                 
                 Button{
-                    PostService.shared.createPost(title: title, content: content, authId: self.authId){
+                    PostService.shared.createPost(title: title, content: content, memberId: self.memberId){
                         (data, error) in
                         _ = data
+                            presentationMode.wrappedValue.dismiss()
                     }
-                    print(authId)
+                    print(memberId)
                 } label: {
                     Text("작성하기")
                         .bold()
@@ -58,10 +60,6 @@ struct CreatePostView: View {
                   .padding(.vertical, 5)
                   .padding(.horizontal, 10)
             }
-
-
-    
-            
         }
         
     }
@@ -69,6 +67,7 @@ struct CreatePostView: View {
 
 struct CreatePostView_Previews: PreviewProvider {
     static var previews: some View {
-        CreatePostView(authId: "")
+        CreatePostView(memberId: 0)
     }
 }
+

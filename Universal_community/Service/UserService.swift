@@ -55,9 +55,15 @@ final public class UserService{
                        completion(nil, NSError(domain: "invalidJSONTypeError", code: -100009, userInfo: nil))
                        return
                    }
-                   var arrayJson = json["data"] as! Dictionary<String, Any>
-                   print(arrayJson["id"]!)
-                   completion(json, nil)
+                   //checks if json["data"] exists 
+                   guard let arrayJson = json["data"]  as? Dictionary<String, Any> else {
+                       // TODO: it breaks with no return when first login due to inconsistence of the output must change
+                       // TODO: need to check the authId not the nickname
+                       return
+                   }
+                   print("original Json output \(json)")
+                   print("parsed JSon \(arrayJson)")
+                   completion(arrayJson, nil)
                } catch let error {
                    print(error.localizedDescription)
                    completion(nil, error)

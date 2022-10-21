@@ -11,4 +11,5 @@ import Foundation
 struct User{
     let authId: String
     let nickname: String
+    let memberId: Int64
 }

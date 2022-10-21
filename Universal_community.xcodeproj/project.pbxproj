@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9815F2CA28FED433002C1A38 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9815F2C928FED433002C1A38 /* UserInfoViewModel.swift */; };
 		9843EE0A28F5BF330094DDBF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843EE0928F5BF330094DDBF /* User.swift */; };
+		984BF9DB29015C49003E07B1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BF9DA29015C49003E07B1 /* LoginView.swift */; };
 		9854093428F1970E0019913E /* UserFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854093328F1970E0019913E /* UserFilterViewModel.swift */; };
 		9883CACC28F9BECE00EADA13 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 9883CACB28F9BECE00EADA13 /* KakaoSDK */; };
 		9883CAD028F9C32100EADA13 /* KakaoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883CACF28F9C32100EADA13 /* KakaoApi.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		9815F2C928FED433002C1A38 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		9843EE0928F5BF330094DDBF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		984BF9DA29015C49003E07B1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9854093328F1970E0019913E /* UserFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterViewModel.swift; sourceTree = "<group>"; };
 		9883CACF28F9C32100EADA13 /* KakaoApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoApi.swift; sourceTree = "<group>"; };
 		9886B71828F56643009EE714 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
@@ -66,13 +68,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9815F2CB28FEE8F9002C1A38 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		9843EE0F28F5C4690094DDBF /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,7 +157,6 @@
 		98AAD0DF28F06DDA00893DCB /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				9815F2CB28FEE8F9002C1A38 /* ViewModel */,
 				98AAD0E628F0731600893DCB /* Posts */,
 				98BF8F4D28F46FC200D24EFD /* TextArea.swift */,
 			);
@@ -249,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				98AE72BD28F14B97009D4D60 /* ProfileView.swift */,
+				984BF9DA29015C49003E07B1 /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -346,6 +341,7 @@
 				98AAD0CD28F06D1900893DCB /* Universal_communityApp.swift in Sources */,
 				98BF8F5228F4883600D24EFD /* PostService.swift in Sources */,
 				98AE72B628F14A99009D4D60 /* ExploreView.swift in Sources */,
+				984BF9DB29015C49003E07B1 /* LoginView.swift in Sources */,
 				9883CAD028F9C32100EADA13 /* KakaoApi.swift in Sources */,
 				98AE72B128F146B3009D4D60 /* MainTabView.swift in Sources */,
 			);

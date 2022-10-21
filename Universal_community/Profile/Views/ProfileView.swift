@@ -17,14 +17,22 @@ struct ProfileView: View {
     
     
     var body: some View {
-        VStack(alignment: .leading){
-            userWidget
-            profileFilterBar
-            
-            postView
-            
-            Spacer()
+        Group{
+            if (userViewModel.hasLoggedIn){
+                VStack(alignment: .leading){
+                    userWidget
+                    profileFilterBar
+                    
+                    postView
+                    
+                    Spacer()
+                }
+            }
+            if (!userViewModel.hasLoggedIn){
+                LoginView()
+            }
         }
+        
     }
 }
 
@@ -37,17 +45,16 @@ struct ProfileView_Previews: PreviewProvider {
 extension ProfileView {
     
     var actionButtons: some View {
-        Button{
-            if (!userViewModel.hasLoggedIn){
-                userViewModel.logIn()
-            } else{
-                userViewModel.logOut()
+        VStack{
+            Button{
+                    userViewModel.logOut()
+            } label: {
+                Image(systemName: "square.and.pencil")
             }
-        } label: {
-            userViewModel.hasLoggedIn ?
-            Image(systemName: "square.and.pencil")
-            :
-            Image("kakao_login_medium_narrow")
+            Button("check memID"){
+                var id = UserDefaults.standard.integer(forKey: "memberId")
+                print("my Id is: \(id)")
+            }
         }
     }
     
