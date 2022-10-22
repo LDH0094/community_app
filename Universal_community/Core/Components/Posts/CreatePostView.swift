@@ -27,10 +27,12 @@ struct CreatePostView: View {
                 Spacer()
                 
                 Button{
-                    PostService.shared.createPost(title: title, content: content, memberId: self.memberId){
-                        (data, error) in
-                        _ = data
-                            presentationMode.wrappedValue.dismiss()
+                    Task{
+                        PostService.shared.createPost(title: title, content: content, memberId: self.memberId){
+                            (data, error) in
+                            _ = data
+                                presentationMode.wrappedValue.dismiss()
+                        }
                     }
                     print(memberId)
                 } label: {

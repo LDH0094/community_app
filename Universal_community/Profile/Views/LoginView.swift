@@ -35,7 +35,7 @@ extension LoginView{
                 Image("kakao_login_medium_narrow")
             }
             Button("LogmeIn"){
-                userViewModel.testLogIn(authId: "10262", nickname: "Lee123")
+                userViewModel.testLogIn(authId: "1022", nickname: "Lee")
             }
         }
     }

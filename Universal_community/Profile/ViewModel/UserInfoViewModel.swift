@@ -18,7 +18,7 @@ class UserInfoViewModel: ObservableObject{
         if (hasLoggedIn){
         var authId: String = UserDefaults.standard.string(forKey: "authId") ?? ""
         var nickname: String = UserDefaults.standard.string(forKey: "nickname") ?? "ERROR 102"
-            var memberId: Int64 = Int64(UserDefaults.standard.integer(forKey: "memberId"))
+        var memberId: Int64 = Int64(UserDefaults.standard.integer(forKey: "memberId"))
             self.user = User(authId: authId, nickname: nickname, memberId: memberId)
         }
     }

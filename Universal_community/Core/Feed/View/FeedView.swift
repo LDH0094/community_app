@@ -34,7 +34,7 @@ struct FeedView: View {
                         Text("보여드릴 게시글이 없어요!")
                     }
                     Button{
-                        if (userViewModel.user.memberId != 0){
+                        if (UserDefaults.standard.integer(forKey: "memberId") != 0){
                             createPost.toggle()
                         } else {
                             print("Need to Login to Post")
