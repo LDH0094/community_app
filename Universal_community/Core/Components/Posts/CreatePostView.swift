@@ -11,6 +11,9 @@ struct CreatePostView: View {
     @State private var title = ""
     @State private var content = ""
     @State private var isLoading = true
+    @State private var onSubmit: Bool = false
+    @Binding var hasPosted: Bool
+    var onDismiss: ((_ model: Bool) -> Void)?
     var memberId: Int64
     
     
@@ -27,13 +30,17 @@ struct CreatePostView: View {
                 Spacer()
                 
                 Button{
-                    Task{
-                        PostService.shared.createPost(title: title, content: content, memberId: self.memberId){
-                            (data, error) in
-                            _ = data
+                    onSubmit.toggle()
+                        if (onSubmit){
+                            PostService.shared.createPost(title: self.title, content: self.content, memberId: self.memberId){
+                                (data, error) in
+                                _ = data
+                                // send back the data
+                                self.hasPosted = true
+                                onDismiss?(self.hasPosted)
                                 presentationMode.wrappedValue.dismiss()
+                            }
                         }
-                    }
                     print(memberId)
                 } label: {
                     Text("작성하기")
@@ -43,6 +50,7 @@ struct CreatePostView: View {
                         .foregroundColor(.white)
                         .background(Capsule().foregroundColor(.orange))
                 }
+                
             }
             .padding()
             Divider()
@@ -67,9 +75,9 @@ struct CreatePostView: View {
     }
 }
 
-struct CreatePostView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreatePostView(memberId: 0)
-    }
-}
+//struct CreatePostView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreatePostView(memberId: 0)
+//    }
+//}
 

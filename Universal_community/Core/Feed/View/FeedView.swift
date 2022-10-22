@@ -9,34 +9,40 @@ import SwiftUI
 
 struct FeedView: View {
     @State private var createPost = false
-    @ObservedObject var viewModel = FeedViewModel()
+    @StateObject private var viewModel = FeedViewModel()
     @ObservedObject var userViewModel = UserInfoViewModel()
-    
-    init(){
-        viewModel.getPosts()
-    }
-    
+    @State var hasPosted: Bool = false
+
+   
+
     var body: some View {
-        NavigationView{
             ZStack (alignment: .bottomTrailing){
                 Group{
-                    if (viewModel.hasPosts){
+                    if (viewModel.isLoading){
+                        VStack{
+                            Spacer()
+                            ProgressView()
+                                .onAppear{
+                                    print("spinner am I?")
+                                }
+                            Spacer()
+                        }
+                    }else{
                         ScrollView {
                             LazyVStack{
                                 ForEach(viewModel.posts, id: \.self){
                                     post in
                                     PostRowView(post: post)
-                                    
                                 }
                             }
                         }
-                    } else{
-                        Text("보여드릴 게시글이 없어요!")
+                        }
                     }
                     Button{
-                        if (UserDefaults.standard.integer(forKey: "memberId") != 0){
+                        if (userViewModel.user.memberId != 0){
                             createPost.toggle()
                         } else {
+                            //show alert below
                             print("Need to Login to Post")
                         }
                     }label:
@@ -47,14 +53,21 @@ struct FeedView: View {
                             .foregroundColor(.orange)
                             .frame(width: 60, height: 60)
                             .padding()
+                            
+                            
                     }
-                    .fullScreenCover(isPresented: $createPost){
-                        CreatePostView(memberId: userViewModel.user.memberId)
+                    .fullScreenCover(isPresented: $createPost, onDismiss: {
+                        if(hasPosted) {
+                            viewModel.refreshPosts()
+                            hasPosted = false
+                            print("on Dimiss: refreshing posts")
+                        }
+                    }){
+                        CreatePostView(hasPosted: $hasPosted, memberId: userViewModel.user.memberId)
                         
                     }
                 }
             }
-        }
     }
     
     struct FeedView_Previews: PreviewProvider {
@@ -64,4 +77,4 @@ struct FeedView: View {
     }
     
     
-}
+

@@ -14,6 +14,7 @@ final public class PostService {
     // "http://localhost:8080/api/v1/posts/list/1?page=0&size=10"
     
     func fetchPosts(completion: @escaping (PostData) -> () ){
+
         
         guard let url = URL(string: "http://localhost:8080/api/v1/posts/list/1?page=0&size=10") else {
             return
@@ -82,6 +83,7 @@ final public class PostService {
                        completion(nil, NSError(domain: "invalidJSONTypeError", code: -100009, userInfo: nil))
                        return
                    }
+                   
                    print(json)
                    completion(json, nil)
                } catch let error {
