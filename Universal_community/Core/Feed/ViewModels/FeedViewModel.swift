@@ -31,7 +31,13 @@ class FeedViewModel: ObservableObject{
     func getPosts() async {
         print("------------getting posts---------------")
         print("loading..")
-        viewState = .loading
+        
+        if (posts.isEmpty){
+            viewState = .loading}
+        else{
+            viewState = .fethcing
+        }
+        
         defer{ viewState = .finished}
         PostService.shared.fetchPosts(pageId: 0) { postData in
             if (postData.data.isEmpty){
@@ -102,12 +108,12 @@ extension FeedViewModel{
         case finished
     }
 }
-private extension FeedViewModel {
-    func reset() {
-        if viewState == .finished {
-            posts.removeAll()
-            page = 0
-            viewState = nil
-        }
-    }
-}
+//private extension FeedViewModel {
+//    func reset() {
+//        if viewState == .finished {
+//            posts.removeAll()
+//            page = 0
+//            viewState = nil
+//        }
+//    }
+//}

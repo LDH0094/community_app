@@ -21,14 +21,16 @@ struct FeedView: View {
                     loadingView
                 }else{
                     ScrollView {
-                        LazyVStack{
+                        LazyVStack(){
                             ForEach(vm.posts, id: \.id){
                                 post in
+                                PostRowView(post: post)
                                 NavigationLink{
                                     PostItemView(id: post.id)
                                     
                                 }label: {
-                                    PostRowView(post: post)
+                                    //something like this?
+                                    EmptyView()
                                         .task{
                                             if vm.hasReachedEnd(of: post){
                                                 await vm.getNextPosts()
@@ -36,7 +38,8 @@ struct FeedView: View {
                                         }
                                 }
                             }
-                        }.overlay(alignment: .bottom) {
+                        }
+                        .overlay(alignment: .bottom) {
                             if vm.isFetching {
                                 ProgressView()
                             }

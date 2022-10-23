@@ -14,9 +14,9 @@ struct PostRowView: View {
         VStack (alignment: .leading){
             
             HStack(alignment: .top, spacing: 12){
-                Circle()
-                    .frame(width: 56, height: 56)
-                    .foregroundColor(Color(.systemBlue))
+//                Circle()
+//                    .frame(width: 56, height: 56)
+//                    .foregroundColor(Color(.systemBlue))
     
                 //sets the text so that it aligns with the leading.
                 VStack(alignment: .leading, spacing: 4){
@@ -75,6 +75,7 @@ struct PostRowView: View {
         }
         .padding()
     }
+
 }
 
 struct PostRowView_Previews: PreviewProvider {
