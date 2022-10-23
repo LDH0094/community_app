@@ -13,13 +13,11 @@ final public class PostService {
     
     // "http://localhost:8080/api/v1/posts/list/1?page=0&size=10"
     
-    func fetchPosts(completion: @escaping (PostData) -> () ){
-
-        
-        guard let url = URL(string: "http://localhost:8080/api/v1/posts/list/1?page=0&size=10") else {
+    func fetchPosts(pageId: Int, completion: @escaping (PostData) -> () ){
+        guard let url = URL(string: "http://localhost:8080/api/v1/posts/list/0?page=\(pageId)&size=10") else {
             return
         }
-        
+        sleep(3)
         var request: URLRequest = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -38,12 +36,14 @@ final public class PostService {
     }
     
     
+    
+    
     //"http://localhost:8080/api/v1/posts/"
     
-    func createPost(title: String, content: String, memberId: Int64, completion: @escaping ([String: Any]?, Error?) -> Void){
+    func createPost(post: NewPost, memberId: Int64, completion: @escaping (Result<Void, Error>) -> Void){
         
         //declare parameter as a dictionary which contains string as key and value combination.
-        let parameters = ["title": title, "content": content, "memberId": memberId] as [String : Any]
+        let parameters = ["title": post.title, "content": post.content, "memberId": memberId] as [String : Any]
         
         guard let url = URL(string: "http://localhost:8080/api/v1/posts/") else {
             return
@@ -60,19 +60,19 @@ final public class PostService {
               request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to data object and set it as request body
           } catch let error {
               print(error.localizedDescription)
-              completion(nil, error)
+              completion(.failure(error))
           }
         
         //create dataTask using the session object to send data to the server
            let task = session.dataTask(with: request, completionHandler: { data, response, error in
-
-               guard error == nil else {
-                   completion(nil, error)
-                   return
-               }
+//
+//               guard error == nil else {
+//                   completion(.failure())
+//                   return
+//               }
 
                guard let data = data else {
-                   completion(nil, NSError(domain: "dataNilError", code: -100001, userInfo: nil))
+                   completion(.failure(NSError(domain: "dataNilError", code: -100001, userInfo: nil)))
                    return
                }
 
@@ -80,15 +80,15 @@ final public class PostService {
                    print("serial: \(data)")
                    //create json object from data
                    guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
-                       completion(nil, NSError(domain: "invalidJSONTypeError", code: -100009, userInfo: nil))
+                       completion(.failure( NSError(domain: "invalidJSONTypeError", code: -100009, userInfo: nil)))
                        return
                    }
                    
                    print(json)
-                   completion(json, nil)
+                   completion(.success(()))
                } catch let error {
                    print(error.localizedDescription)
-                   completion(nil, error)
+                   completion(.failure(error))
                }
            })
 

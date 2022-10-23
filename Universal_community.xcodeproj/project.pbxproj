@@ -25,6 +25,9 @@
 		98AE72B828F14ABB009D4D60 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AE72B728F14ABB009D4D60 /* NotificationView.swift */; };
 		98AE72BE28F14B97009D4D60 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AE72BD28F14B97009D4D60 /* ProfileView.swift */; };
 		98B3B03629043FFE00BFF55E /* ProgressViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B3B03529043FFE00BFF55E /* ProgressViewDemo.swift */; };
+		98B3B03829056BA700BFF55E /* CreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B3B03729056BA700BFF55E /* CreateViewModel.swift */; };
+		98B3B03B29056C6C00BFF55E /* NewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B3B03A29056C6B00BFF55E /* NewPost.swift */; };
+		98B3B03D29057DCD00BFF55E /* PostItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B3B03C29057DCD00BFF55E /* PostItemView.swift */; };
 		98BF8F4A28F4652700D24EFD /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BF8F4928F4652700D24EFD /* CreatePostView.swift */; };
 		98BF8F4E28F46FC200D24EFD /* TextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BF8F4D28F46FC200D24EFD /* TextArea.swift */; };
 		98BF8F5028F4875700D24EFD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BF8F4F28F4875700D24EFD /* Post.swift */; };
@@ -51,6 +54,9 @@
 		98AE72B728F14ABB009D4D60 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		98AE72BD28F14B97009D4D60 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		98B3B03529043FFE00BFF55E /* ProgressViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewDemo.swift; sourceTree = "<group>"; };
+		98B3B03729056BA700BFF55E /* CreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewModel.swift; sourceTree = "<group>"; };
+		98B3B03A29056C6B00BFF55E /* NewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPost.swift; sourceTree = "<group>"; };
+		98B3B03C29057DCD00BFF55E /* PostItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItemView.swift; sourceTree = "<group>"; };
 		98BF8F4928F4652700D24EFD /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
 		98BF8F4D28F46FC200D24EFD /* TextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextArea.swift; sourceTree = "<group>"; };
 		98BF8F4F28F4875700D24EFD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -160,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				98B3B03429043FD900BFF55E /* AssetComponents */,
+				98B3B03929056C6000BFF55E /* Model */,
 				98B3B03129042E0C00BFF55E /* ViewModels */,
 				98AAD0E628F0731600893DCB /* Posts */,
 				98BF8F4D28F46FC200D24EFD /* TextArea.swift */,
@@ -197,6 +204,7 @@
 			children = (
 				98BF8F4928F4652700D24EFD /* CreatePostView.swift */,
 				98AAD0E728F0732B00893DCB /* PostRowView.swift */,
+				98B3B03C29057DCD00BFF55E /* PostItemView.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -255,6 +263,7 @@
 		98B3B03129042E0C00BFF55E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				98B3B03729056BA700BFF55E /* CreateViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -265,6 +274,14 @@
 				98B3B03529043FFE00BFF55E /* ProgressViewDemo.swift */,
 			);
 			path = AssetComponents;
+			sourceTree = "<group>";
+		};
+		98B3B03929056C6000BFF55E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				98B3B03A29056C6B00BFF55E /* NewPost.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98B3B03829056BA700BFF55E /* CreateViewModel.swift in Sources */,
 				9886B71928F56643009EE714 /* FeedViewModel.swift in Sources */,
 				98BF8F4A28F4652700D24EFD /* CreatePostView.swift in Sources */,
 				98AE72BE28F14B97009D4D60 /* ProfileView.swift in Sources */,
@@ -351,6 +369,7 @@
 				98BF8F5028F4875700D24EFD /* Post.swift in Sources */,
 				9854093428F1970E0019913E /* UserFilterViewModel.swift in Sources */,
 				98AAD0CF28F06D1900893DCB /* ContentView.swift in Sources */,
+				98B3B03B29056C6C00BFF55E /* NewPost.swift in Sources */,
 				98AAD0E828F0732B00893DCB /* PostRowView.swift in Sources */,
 				9843EE0A28F5BF330094DDBF /* User.swift in Sources */,
 				98AE72B828F14ABB009D4D60 /* NotificationView.swift in Sources */,
@@ -360,6 +379,7 @@
 				98AAD0CD28F06D1900893DCB /* Universal_communityApp.swift in Sources */,
 				98B3B03629043FFE00BFF55E /* ProgressViewDemo.swift in Sources */,
 				98BF8F5228F4883600D24EFD /* PostService.swift in Sources */,
+				98B3B03D29057DCD00BFF55E /* PostItemView.swift in Sources */,
 				98AE72B628F14A99009D4D60 /* ExploreView.swift in Sources */,
 				984BF9DB29015C49003E07B1 /* LoginView.swift in Sources */,
 				9883CAD028F9C32100EADA13 /* KakaoApi.swift in Sources */,

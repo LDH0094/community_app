@@ -8,21 +8,25 @@
 import SwiftUI
 
 struct CreatePostView: View {
-    @State private var title = ""
-    @State private var content = ""
     @State private var isLoading = true
     @State private var onSubmit: Bool = false
-    @Binding var hasPosted: Bool
-    var onDismiss: ((_ model: Bool) -> Void)?
+    @StateObject private var vm = CreateViewModel()
+    @FocusState private var focusedField: Field?
+    enum Field: Hashable {
+       case title, content
+     }
     var memberId: Int64
     
     
-    @Environment(\.presentationMode) var presentationMode
+    
+    @Environment(\.dismiss) private var dismiss
+    
+    
     var body: some View {
         VStack{
             HStack{
                 Button{
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 } label: {
                     Text("취소")
                     
@@ -30,18 +34,11 @@ struct CreatePostView: View {
                 Spacer()
                 
                 Button{
-                    onSubmit.toggle()
-                        if (onSubmit){
-                            PostService.shared.createPost(title: self.title, content: self.content, memberId: self.memberId){
-                                (data, error) in
-                                _ = data
-                                // send back the data
-                                self.hasPosted = true
-                                onDismiss?(self.hasPosted)
-                                presentationMode.wrappedValue.dismiss()
-                            }
-                        }
-                    print(memberId)
+                    focusedField = nil
+                    Task{
+                        vm.createPost(memberId: self.memberId)
+                    }
+                    
                 } label: {
                     Text("작성하기")
                         .bold()
@@ -52,10 +49,16 @@ struct CreatePostView: View {
                 }
                 
             }
+            .overlay {
+                if vm.state == .submitting {
+                    ProgressView()
+                }
+            }
             .padding()
             Divider()
             ScrollView{
-              TextArea("제목 작성", text: $title)
+                TextArea("제목 작성", text: $vm.post.title)
+                    .focused($focusedField, equals: .title)
                   .lineLimit(1)
                   .frame(maxHeight: 50)
                   .overlay(alignment: .topLeading){
@@ -66,12 +69,16 @@ struct CreatePostView: View {
                   .padding(.horizontal, 40)
               
               Divider()
-              TextArea("작성 하고 싶은 글이나\n나누고 싶은 말을 해보아요!", text: $content)
+                TextArea("작성 하고 싶은 글이나\n나누고 싶은 말을 해보아요!", text: $vm.post.content)
+                    .focused($focusedField, equals: .content)
                   .padding(.vertical, 5)
                   .padding(.horizontal, 10)
             }
+        }.onChange(of: vm.state){ formState in
+            if formState == .successful{
+                dismiss()
+            }
         }
-        
     }
 }
 
