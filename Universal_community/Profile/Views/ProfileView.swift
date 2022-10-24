@@ -10,7 +10,7 @@ import KakaoSDKUser
 
 struct ProfileView: View {
     @ObservedObject var userViewModel = UserInfoViewModel()
-    @StateObject private var vm = FeedViewModel()
+    @StateObject private var vm = ProfileListViewModel()
     @State private var selectedFilter: UserFilterViewModel = .myPosts
     
     @Namespace var animation

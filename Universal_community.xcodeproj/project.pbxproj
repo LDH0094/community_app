@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		980717CD2906A7710021CA9B /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980717CC2906A7710021CA9B /* Like.swift */; };
 		980717CF2906A9000021CA9B /* LikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980717CE2906A9000021CA9B /* LikeViewModel.swift */; };
+		980717D12906B7370021CA9B /* ProfileListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980717D02906B7370021CA9B /* ProfileListViewModel.swift */; };
 		9815F2CA28FED433002C1A38 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9815F2C928FED433002C1A38 /* UserInfoViewModel.swift */; };
 		9843EE0A28F5BF330094DDBF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843EE0928F5BF330094DDBF /* User.swift */; };
 		984BF9DB29015C49003E07B1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BF9DA29015C49003E07B1 /* LoginView.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		980717CC2906A7710021CA9B /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		980717CE2906A9000021CA9B /* LikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewModel.swift; sourceTree = "<group>"; };
+		980717D02906B7370021CA9B /* ProfileListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileListViewModel.swift; sourceTree = "<group>"; };
 		9815F2C928FED433002C1A38 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		9843EE0928F5BF330094DDBF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		984BF9DA29015C49003E07B1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			children = (
 				9854093328F1970E0019913E /* UserFilterViewModel.swift */,
 				9815F2C928FED433002C1A38 /* UserInfoViewModel.swift */,
+				980717D02906B7370021CA9B /* ProfileListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				980717CD2906A7710021CA9B /* Like.swift in Sources */,
 				98B3B03D29057DCD00BFF55E /* PostItemView.swift in Sources */,
 				98AE72B628F14A99009D4D60 /* ExploreView.swift in Sources */,
+				980717D12906B7370021CA9B /* ProfileListViewModel.swift in Sources */,
 				984BF9DB29015C49003E07B1 /* LoginView.swift in Sources */,
 				9883CAD028F9C32100EADA13 /* KakaoApi.swift in Sources */,
 				98AE72B128F146B3009D4D60 /* MainTabView.swift in Sources */,

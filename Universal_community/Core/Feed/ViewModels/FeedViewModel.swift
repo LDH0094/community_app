@@ -101,51 +101,6 @@ class FeedViewModel: ObservableObject{
         }
     }
     
-    /*
-     in case of liked posts
-     */
-    
-    func getLikedPosts() async {
-        print("------------getting posts---------------")
-        print("loading..")
-        
-        if (posts.isEmpty){
-            viewState = .loading
-        }
-        
-        else{
-            viewState = .fethcing
-        }
-        
-        memberId = String(UserDefaults.standard.integer(forKey: "memberId"))
-        
-        defer{ viewState = .finished}
-        PostService.shared.fetchLikedPosts(pageId: 0, memberId: memberId){ postData in
-            if (postData.data.isEmpty){
-            }else{
-                //from general post data to posts [post]
-                self.lastIndex = postData.data.count
-                self.likedPosts = postData.data
-            }
-        }
-        print("loading done..")
-    }
-    
-    func refreshLikedPosts() async {
-        print("refreshed")
-        memberId = String(UserDefaults.standard.integer(forKey: "memberId"))
-        PostService.shared.fetchLikedPosts(pageId: 0, memberId: memberId) { postData in
-            if (postData.data.isEmpty){
-                print("nothing to bring")
-            }else{
-                //from general post data to posts [post]
-                self.likedPosts.insert(contentsOf: postData.data, at: 0)
-
-            }
-        }
-    }
-   
-    
 }
 
 extension FeedViewModel{
