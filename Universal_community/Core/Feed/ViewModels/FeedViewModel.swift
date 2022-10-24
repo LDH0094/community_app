@@ -27,7 +27,6 @@ class FeedViewModel: ObservableObject{
     private var lastIndex = 10
     private var page = 0
     
-
     func getPosts() async {
         print("------------getting posts---------------")
         print("loading..")

@@ -14,7 +14,7 @@ struct FeedView: View {
     @ObservedObject var userViewModel = UserInfoViewModel()
     @State var hasPosted: Bool = false
     @State var memberId: Int64
-
+    
     
     init() {
         memberId = Int64(UserDefaults.standard.integer(forKey: "memberId"))
@@ -27,61 +27,26 @@ struct FeedView: View {
                 if vm.isLoading {
                     loadingView
                 }else{
-                    ScrollView {
-                        LazyVStack(){
-                            ForEach(vm.posts, id: \.id){
-                                post in
-                                PostRowView(post: post)
-                                NavigationLink{
-                                    PostItemView(id: post.id)
-                                    
-                                }label: {
-                                    //something like this?
-                                    EmptyView()
-                                        .task{
-                                            if vm.hasReachedEnd(of: post){
-                                                await vm.getNextPosts()
-                                            }
-                                        }
-                                }
-                            }
-                        }
-                        .overlay(alignment: .bottom) {
-                            if vm.isFetching {
-                                ProgressView()
-                            }
-                        }
-                        .padding()
-                    }
-                    .refreshable {
-                        await vm.refreshPosts()
-                    }
+                    scrollPost
                 }
-                
+                createButton
+                    .padding()
             }
-                .task {
-                    memberId = Int64(UserDefaults.standard.integer(forKey: "memberId"))
-                    print("Now MemberId: \(memberId)")
-                        await vm.getPosts()
-                }
-                .toolbar{
-                    if(memberId != 0){
-                        ToolbarItem(placement: .primaryAction){
-                            createButton
-                        }}
-                }
-                .sheet(isPresented: $shouldShowCreate){
-                    CreatePostView(memberId: memberId)
-                }
+            .task {
+                await vm.getPosts()
+            }
+            .sheet(isPresented: $shouldShowCreate){
+                CreatePostView(memberId: memberId)
             }
         }
     }
-//struct FeedView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FeedView(memberId: Int64(UserDefaults.standard.integer(forKey: "memberId")))
-//    }
-//}
-
+    
+    struct FeedView_Previews: PreviewProvider {
+        static var previews: some View {
+            FeedView()
+        }
+    }
+}
 extension FeedView {
         
         var loadingView: some View {
@@ -97,11 +62,50 @@ extension FeedView {
         
         var createButton: some View{
             Button{
-                shouldShowCreate.toggle()
+                memberId = Int64(UserDefaults.standard.integer(forKey: "memberId"))
+                print("Now MemberId: \(memberId)")
+                if memberId == 0{
+                    // code to show alert
+                }else{
+                    shouldShowCreate.toggle()
+                }
             }label: {
-                Image(systemName: "square.and.pencil")
-                    .font(.title2)
+                Image(systemName: "square.and.pencil.circle.fill")
+                    .font(.system(size: 60))
             }
             .disabled(vm.isLoading)
         }
+        
+        var scrollPost: some View {
+            ScrollView {
+                LazyVStack(){
+                    ForEach(vm.posts, id: \.id){
+                        post in
+                        
+                        NavigationLink{
+                            PostItemView(id: post.id)
+                            
+                        }label: {
+                            //something like this?
+                            PostRowView(post: post)
+                                .task{
+                                    if vm.hasReachedEnd(of: post){
+                                        await vm.getNextPosts()
+                                    }
+                                }
+                        }
+                    }
+                }
+                .overlay(alignment: .bottom) {
+                    if vm.isFetching {
+                        ProgressView()
+                    }
+                }
+                .padding()
+            }
+            .refreshable {
+                await vm.refreshPosts()
+            }
+        }
     }
+

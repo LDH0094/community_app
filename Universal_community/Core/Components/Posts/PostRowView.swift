@@ -24,7 +24,7 @@ struct PostRowView: View {
                     HStack{
                         Text(post.writer)
                             .font(.subheadline).bold()
-                        Text("@\(post.writer)")
+                        Text("@\(post.id)")
                             .foregroundColor(.gray)
                             .font(.caption)
                         Text("2hrs")
