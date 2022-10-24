@@ -32,6 +32,7 @@ struct FeedView: View {
                 createButton
                     .padding()
             }
+        
             .task {
                 await vm.getPosts()
             }
@@ -72,10 +73,13 @@ extension FeedView {
             }label: {
                 Image(systemName: "square.and.pencil.circle.fill")
                     .font(.system(size: 60))
+                    .foregroundColor(.mint)
             }
-            .disabled(vm.isLoading)
+            .disabled(vm.isLoading || vm.isFetching)
         }
         
+    
+    
         var scrollPost: some View {
             ScrollView {
                 LazyVStack(){
@@ -83,11 +87,12 @@ extension FeedView {
                         post in
                         
                         NavigationLink{
-                            PostItemView(id: post.id)
+                            PostItemView(post: post)
+                                .navigationBarBackButtonHidden(false)
                             
                         }label: {
                             //something like this?
-                            PostRowView(post: post)
+                            PostRowView(post: post, memberId: memberId)
                                 .task{
                                     if vm.hasReachedEnd(of: post){
                                         await vm.getNextPosts()

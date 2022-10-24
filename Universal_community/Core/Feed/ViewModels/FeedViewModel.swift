@@ -9,9 +9,11 @@ import Foundation
 
 class FeedViewModel: ObservableObject{
     @Published private(set) var posts: [Post] = []
+    @Published private(set) var likedPosts: [Post] = []
     @Published private(set) var hasPosts: Bool = false
     @Published private(set) var viewState: ViewState?
     @Published var hasError = false
+    private var memberId = "0"
 
     
     var isLoading: Bool {
@@ -22,23 +24,26 @@ class FeedViewModel: ObservableObject{
         viewState == .fethcing
     }
     
-    
-    
     private var lastIndex = 10
     private var page = 0
     
+
     func getPosts() async {
         print("------------getting posts---------------")
         print("loading..")
         
         if (posts.isEmpty){
-            viewState = .loading}
+            viewState = .loading
+        }
+        
         else{
             viewState = .fethcing
         }
         
+        memberId = String(UserDefaults.standard.integer(forKey: "memberId"))
+        
         defer{ viewState = .finished}
-        PostService.shared.fetchPosts(pageId: 0) { postData in
+        PostService.shared.fetchPosts(pageId: 0, memberId: memberId){ postData in
             if (postData.data.isEmpty){
             }else{
                 //from general post data to posts [post]
@@ -49,7 +54,6 @@ class FeedViewModel: ObservableObject{
         print("loading done..")
     }
     
-
     func getNextPosts() async {
         print("loading..")
         viewState = .fethcing
@@ -57,7 +61,9 @@ class FeedViewModel: ObservableObject{
         
         page += 1
         
-        PostService.shared.fetchPosts(pageId: page) { postData in
+        memberId = String(UserDefaults.standard.integer(forKey: "memberId"))
+        
+        PostService.shared.fetchPosts(pageId: page, memberId: memberId) { postData in
             if (postData.data.isEmpty){
             }else{
                 //from general post data to posts [post]
@@ -83,7 +89,8 @@ class FeedViewModel: ObservableObject{
     
     func refreshPosts() async {
         print("refreshed")
-        PostService.shared.fetchPosts(pageId: 0) { postData in
+        memberId = String(UserDefaults.standard.integer(forKey: "memberId"))
+        PostService.shared.fetchPosts(pageId: 0, memberId: memberId) { postData in
             if (postData.data.isEmpty){
                 print("nothing to bring")
             }else{
@@ -95,8 +102,49 @@ class FeedViewModel: ObservableObject{
     }
     
     /*
-     when post is initiall called.
+     in case of liked posts
      */
+    
+    func getLikedPosts() async {
+        print("------------getting posts---------------")
+        print("loading..")
+        
+        if (posts.isEmpty){
+            viewState = .loading
+        }
+        
+        else{
+            viewState = .fethcing
+        }
+        
+        memberId = String(UserDefaults.standard.integer(forKey: "memberId"))
+        
+        defer{ viewState = .finished}
+        PostService.shared.fetchLikedPosts(pageId: 0, memberId: memberId){ postData in
+            if (postData.data.isEmpty){
+            }else{
+                //from general post data to posts [post]
+                self.lastIndex = postData.data.count
+                self.likedPosts = postData.data
+            }
+        }
+        print("loading done..")
+    }
+    
+    func refreshLikedPosts() async {
+        print("refreshed")
+        memberId = String(UserDefaults.standard.integer(forKey: "memberId"))
+        PostService.shared.fetchLikedPosts(pageId: 0, memberId: memberId) { postData in
+            if (postData.data.isEmpty){
+                print("nothing to bring")
+            }else{
+                //from general post data to posts [post]
+                self.likedPosts.insert(contentsOf: postData.data, at: 0)
+
+            }
+        }
+    }
+   
     
 }
 

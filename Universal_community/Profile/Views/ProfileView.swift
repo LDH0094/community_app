@@ -10,7 +10,9 @@ import KakaoSDKUser
 
 struct ProfileView: View {
     @ObservedObject var userViewModel = UserInfoViewModel()
+    @StateObject private var vm = FeedViewModel()
     @State private var selectedFilter: UserFilterViewModel = .myPosts
+    
     @Namespace var animation
     
     
@@ -21,10 +23,17 @@ struct ProfileView: View {
             if (userViewModel.hasLoggedIn){
                 VStack(alignment: .leading){
                     userWidget
-                    profileFilterBar
-                    
-                    postView
-                    
+//                    profileFilterBar
+                    Divider()
+                    if vm.isLoading{
+                        customLoading
+                    }else {
+                        likedPostView
+                        //on Appear
+                            .task {
+                                await vm.getLikedPosts()
+                            }
+                    }
                     Spacer()
                 }
             }
@@ -44,10 +53,23 @@ struct ProfileView_Previews: PreviewProvider {
 
 extension ProfileView {
     
+    
+    var customLoading: some View{
+        VStack{
+            Spacer()
+            HStack(alignment: .center){
+                Spacer()
+                ProgressView()
+                Spacer()
+            }
+            Spacer()
+        }
+    }
+    
     var actionButtons: some View {
         VStack{
             Button{
-                    userViewModel.logOut()
+                userViewModel.logOut()
             } label: {
                 Image(systemName: "square.and.pencil")
             }
@@ -77,13 +99,13 @@ extension ProfileView {
             //Followers ; Following ; Posts goes here
             HStack(spacing: 24){
                 HStack(spacing: 4){
-                Text("20K")
-                    .font(.subheadline)
-                    .bold()
-                Text("Following")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-            }
+                    Text("20K")
+                        .font(.subheadline)
+                        .bold()
+                    Text("Following")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
                 HStack(spacing: 4){
                     Text("6.9M")
                         .font(.subheadline)
@@ -128,14 +150,43 @@ extension ProfileView {
         .overlay(Divider().offset(x:0, y:16))
     }
     
-    var postView: some View {
-        ScrollView{
-            LazyVStack{
-                ForEach(0...9, id: \.self){_ in
-                    PostRowView(post: Post(id: 12, title: "hi", content: "demo placeholder http 1234 demo placeholder http 1234 demo", writer: "deok#0001", likeCount: 10, commentCount: 15, date: "sdad-asdasd-120", liked: true))
+    //    var postView: some View {
+    //        ScrollView{
+    //            LazyVStack{
+    //                ForEach(0...9, id: \.self){_ in
+    //                    PostRowView(post: Post(id: 12, title: "hi", content: "demo placeholder http 1234 demo placeholder http 1234 demo", writer: "deok#0001", likeCount: 10, commentCount: 15, date: "sdad-asdasd-120", liked: true), memberId: 0)
+    //                    }
+    //                }
+    //            }
+    //        }
+    
+    var likedPostView: some View{
+            ScrollView {
+                LazyVStack(){
+                    ForEach(vm.likedPosts, id: \.id){
+                        post in
+                        
+                        NavigationLink{
+                            PostItemView(post: post)
+                                .navigationBarBackButtonHidden(false)
+                            
+                        }label: {
+                            //something like this?
+                            PostRowView(post: post, memberId: userViewModel.user.memberId)
+                        }
                     }
                 }
+                .overlay(alignment: .bottom) {
+                    if vm.isFetching {
+                        ProgressView()
+                    }
+                }
+                .padding()
             }
-        }
+            .refreshable {
+                await vm.refreshLikedPosts() //chage
+            }
     }
+}
+
 

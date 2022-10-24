@@ -83,9 +83,9 @@ struct CreatePostView: View {
     }
 }
 
-//struct CreatePostView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CreatePostView(memberId: 0)
-//    }
-//}
+struct CreatePostView_Previews: PreviewProvider {
+    static var previews: some View {
+        CreatePostView(memberId: 0)
+    }
+}
 
