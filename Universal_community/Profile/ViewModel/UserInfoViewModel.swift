@@ -66,6 +66,7 @@ class UserInfoViewModel: ObservableObject{
     
     func logOut(){
         UserDefaults.resetStandardUserDefaults()
+        UserDefaults.standard.set(0, forKey: "memberId")
         UserDefaults.standard.set(false, forKey: "hasLoggedIn")
         user = User(authId: "", nickname: "로그인하기", memberId: 0)
         self.hasLoggedIn = false

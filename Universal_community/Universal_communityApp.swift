@@ -17,7 +17,6 @@ struct Universal_communityApp: App {
     init() {
         // Kakao SDK 초기화
         KakaoSDK.initSDK(appKey: "4517fbf3b2c336f9f4647ed53d7a9029")
-
         
         print("hi!")
     }

@@ -13,6 +13,13 @@ struct FeedView: View {
     @StateObject private var vm = FeedViewModel()
     @ObservedObject var userViewModel = UserInfoViewModel()
     @State var hasPosted: Bool = false
+    @State var memberId: Int64
+
+    
+    init() {
+        memberId = Int64(UserDefaults.standard.integer(forKey: "memberId"))
+    }
+    
     
     var body: some View {
         NavigationView{
@@ -53,56 +60,29 @@ struct FeedView: View {
                 
             }
                 .task {
+                    memberId = Int64(UserDefaults.standard.integer(forKey: "memberId"))
+                    print("Now MemberId: \(memberId)")
                         await vm.getPosts()
                 }
                 .toolbar{
-                    ToolbarItem(placement: .primaryAction){
-                        createButton
-                    }
+                    if(memberId != 0){
+                        ToolbarItem(placement: .primaryAction){
+                            createButton
+                        }}
                 }
                 .sheet(isPresented: $shouldShowCreate){
-                    CreatePostView(memberId: 1)
+                    CreatePostView(memberId: memberId)
                 }
             }
         }
     }
-struct FeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedView()
-    }
-}
+//struct FeedView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FeedView(memberId: Int64(UserDefaults.standard.integer(forKey: "memberId")))
+//    }
+//}
 
 extension FeedView {
-        var createPostButton: some View {
-            Button{
-                if (userViewModel.user.memberId != 0){
-                    createPost.toggle()
-                } else {
-                    //show alert below
-                    print("Need to Login to Post")
-                }
-            }label:
-            {
-                Image(systemName: "square.and.pencil.circle.fill")
-                    .resizable()
-                    .renderingMode(.template)
-                    .foregroundColor(.orange)
-                    .frame(width: 60, height: 60)
-                    .padding()
-                
-                
-            }
-            .fullScreenCover(isPresented: $createPost, onDismiss: {
-                if(hasPosted) {
-                    //                            viewModel.refreshPosts()
-                    hasPosted = false
-                    print("on Dimiss: refreshing posts")
-                }
-            }){
-                CreatePostView( memberId: userViewModel.user.memberId)
-                
-            }
-        }
         
         var loadingView: some View {
             VStack{

@@ -15,6 +15,7 @@ struct CreatePostView: View {
     enum Field: Hashable {
        case title, content
      }
+    
     var memberId: Int64
     
     
