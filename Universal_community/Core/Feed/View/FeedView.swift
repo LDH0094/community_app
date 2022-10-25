@@ -92,7 +92,7 @@ extension FeedView {
                                         await vm.getNextPosts(memberId: String(memberId))
                                     }
                                 }
-                        }
+                        }.buttonStyle(PlainButtonStyle())
                     }
                 }
                 .overlay(alignment: .bottom) {
