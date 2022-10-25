@@ -9,7 +9,7 @@ import SwiftUI
 import KakaoSDKUser
 
 struct ProfileView: View {
-    @ObservedObject var userViewModel = UserInfoViewModel()
+    @StateObject var userViewModel = UserInfoViewModel()
     @StateObject private var vm = ProfileListViewModel()
     @State private var selectedFilter: UserFilterViewModel = .myPosts
     

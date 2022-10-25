@@ -111,6 +111,7 @@
 			children = (
 				9843EE0F28F5C4690094DDBF /* API */,
 				98AE72B428F14A82009D4D60 /* Notifications */,
+				98F1F48829080AB500ED919D /* EnvironmentViewModel */,
 				98AE72B328F14A7C009D4D60 /* Profile */,
 				98AE72B228F14A75009D4D60 /* Explore */,
 				98AAD0DE28F06D5000893DCB /* Extensions */,
@@ -291,6 +292,13 @@
 				980717CC2906A7710021CA9B /* Like.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		98F1F48829080AB500ED919D /* EnvironmentViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = EnvironmentViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

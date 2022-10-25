@@ -58,7 +58,7 @@ class UserInfoViewModel: ObservableObject{
                     (data,error) in
                     print("memberId: \(data?["id"]) has been added")
                     UserDefaults.standard.set(data?["id"] ?? 0, forKey: "memberId")
-                    self.user = User(authId: authId, nickname: nickname,  memberId: data!["id"] as! Int64)
+                    self.user = User(authId: authId, nickname: nickname,  memberId: (data?["id"] ?? 0) as! Int64 )
                     
                 }
                 self.hasLoggedIn = true

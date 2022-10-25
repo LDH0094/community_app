@@ -12,8 +12,10 @@ class FeedViewModel: ObservableObject{
     @Published private(set) var likedPosts: [Post] = []
     @Published private(set) var hasPosts: Bool = false
     @Published private(set) var viewState: ViewState?
+    @Published private(set) var dataState: DataState?
     @Published var hasError = false
     private var memberId = "0"
+    private var hasLoadedBefore = false
 
     
     var isLoading: Bool {
@@ -24,47 +26,57 @@ class FeedViewModel: ObservableObject{
         viewState == .fethcing
     }
     
+    var hasNoData: Bool {
+        print("checking dataState")
+        print("dataState: \(dataState)")
+        if (dataState == .noMoreData){
+            return true
+        }else{
+            return false
+        }
+    }
+    
     private var lastIndex = 10
     private var page = 0
     
 
-    func getPosts() async {
-        print("------------getting posts---------------")
-        print("loading..")
-        
-        if (posts.isEmpty){
-            viewState = .loading
-        }
-        
-        else{
-            viewState = .fethcing
-        }
-        
-        memberId = String(UserDefaults.standard.integer(forKey: "memberId"))
-        
-        defer{ viewState = .finished}
-        PostService.shared.fetchPosts(pageId: 0, memberId: memberId){ postData in
-            if (postData.data.isEmpty){
+    func getPosts(memberId: String) async {
+            print("------------getting posts---------------")
+            print("loading..")
+            
+            if (posts.isEmpty){
+                viewState = .loading
             }else{
-                //from general post data to posts [post]
-                self.lastIndex = postData.data.count
-                self.posts = postData.data
+//                viewState = .fethcing
+                print("already loaded before")
+                return
             }
-        }
-        print("loading done..")
+        
+            
+            defer{ viewState = .finished}
+            PostService.shared.fetchPosts(pageId: 0, memberId: memberId){ postData in
+                if (postData.data.isEmpty){
+                    
+                }else{
+                    //from general post data to posts [post]
+                    self.lastIndex = postData.data.count
+                    self.posts = postData.data
+                }
+            }
+            print("loading done..")
     }
     
-    func getNextPosts() async {
+
+    func getNextPosts(memberId: String) async {
         print("loading..")
         viewState = .fethcing
-        defer{ viewState = .finished}
+        defer{ viewState = .finished }
         
         page += 1
         
-        memberId = String(UserDefaults.standard.integer(forKey: "memberId"))
-        
         PostService.shared.fetchPosts(pageId: page, memberId: memberId) { postData in
             if (postData.data.isEmpty){
+                self.dataState  = .noMoreData
             }else{
                 //from general post data to posts [post]
                 self.posts += postData.data
@@ -87,18 +99,20 @@ class FeedViewModel: ObservableObject{
         }
     }
     
-    func refreshPosts() async {
+    func refreshPosts(memberId: String) async {
         print("refreshed")
-        memberId = String(UserDefaults.standard.integer(forKey: "memberId"))
         PostService.shared.fetchPosts(pageId: 0, memberId: memberId) { postData in
             if (postData.data.isEmpty){
-                print("nothing to bring")
+                
             }else{
                 //from general post data to posts [post]
                 self.posts.insert(contentsOf: postData.data, at: 0)
 
             }
         }
+    }
+    func reset(){
+        posts.removeAll()
     }
     
 }
@@ -109,13 +123,9 @@ extension FeedViewModel{
         case loading
         case finished
     }
+    enum DataState{
+        case noMoreData
+    }
 }
-//private extension FeedViewModel {
-//    func reset() {
-//        if viewState == .finished {
-//            posts.removeAll()
-//            page = 0
-//            viewState = nil
-//        }
-//    }
-//}
+
+
